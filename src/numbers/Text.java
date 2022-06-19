@@ -1,9 +1,9 @@
 package numbers;
 
 public enum Text {
-    FIRST_PARAMETER_ERROR("The first parameter should be a natural number or zero.\n"),
+    FIRST_PARAMETER_ERROR("The first parameter should be a natural number or zero."),
 
-    SECOND_PARAMETER_ERROR("The second parameter should be a natural number.\n"),
+    SECOND_PARAMETER_ERROR("The second parameter should be a natural number."),
 
     ENTER("\nEnter a request: "),
 
@@ -20,7 +20,7 @@ public enum Text {
 
     GOODBYE("\nGoodbye!"),
 
-    DIGITS_ONLY("You can enter only digits.\n"),
+    DIGITS_ONLY("You can enter only digits."),
 
     UNKNOWN_COMMAND("Unknown command");
 
