@@ -9,15 +9,14 @@ public enum Text {
 
     GREETING("Welcome to Amazing Numbers!\n"),
 
-    REQUESTS("""
-            Supported requests:
-            - enter a natural number to know its properties;
-            - enter two natural numbers to obtain the properties of the list:
-              * the first parameter represents a starting number;
-              * the second parameters show how many consecutive numbers are to be processed;
-            - two natural numbers and two properties to search for;
-            - separate the parameters with one space;
-            - enter 0 to exit."""),
+    REQUESTS("Supported requests:\n" +
+            "- enter a natural number to know its properties;\n" +
+            "- enter two natural numbers to obtain the properties of the list:\n" +
+            "  * the first parameter represents a starting number;\n" +
+            "  * the second parameters show how many consecutive numbers are to be processed;\n" +
+            "- two natural numbers and two properties to search for;\n" +
+            "- separate the parameters with one space;\n" +
+            "- enter 0 to exit."),
 
     GOODBYE("\nGoodbye!"),
 
