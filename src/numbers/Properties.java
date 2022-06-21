@@ -31,6 +31,15 @@ public enum Properties {
                 || property2.equals("SUNNY") && property1.equals("SQUARE");
     }
 
+    public static boolean noSuchProperty(String property) {
+        for (Properties properties : Properties.values()) {
+            if (properties.name().equals(property)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return name();

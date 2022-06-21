@@ -30,7 +30,7 @@ public class Application {
             }
             checkNumbers(input);
             if (input.length == 3) {
-                checkProperties(input[2]);
+                availableProperty(input);
             } else {
                 checkProperties(input);
             }
@@ -49,38 +49,29 @@ public class Application {
         }
     }
 
-    private boolean noSuchProperty(String property) {
-        for (Properties properties : Properties.values()) {
-            if (properties.name().equals(property)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private void checkProperties(String property) {
-        if (noSuchProperty(property)) {
-            throw new RuntimeException("\nThe property [" + property + "] is wrong.\n" +
-                    "Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY, JUMPING]");
-        }
-    }
 
     private void checkProperties(String[] input) {
-        availableProperties(input);
+        availableProperty(input);
         isExclusiveProperties(input);
     }
 
-    private void availableProperties(String[] input) {
+    private void availableProperty(String[] input) {
         StringBuilder wrongProperties = new StringBuilder();
         for (int i = 2; i < input.length; i++) {
-            if (noSuchProperty(input[i])) {
+            if (Properties.noSuchProperty(input[i])) {
                 wrongProperties.append(input[i]).append(", ");
             }
         }
-        if (wrongProperties.length() > 0) {
+        if (!wrongProperties.isEmpty()) {
+            String[] manyProperties = String.valueOf(wrongProperties).split(" ");
             wrongProperties.delete(wrongProperties.length() - 2, wrongProperties.length());
-            throw new RuntimeException("The properties [" + wrongProperties + "] are wrong\n" +
-                    "Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY, JUMPING]");
+            if (manyProperties.length == 1) {
+                throw new RuntimeException("\nThe property [" + wrongProperties + "] is wrong.\n" +
+                        "Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY, JUMPING]");
+            } else {
+                throw new RuntimeException("The properties [" + wrongProperties + "] are wrong\n" +
+                        "Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY, JUMPING]");
+            }
         }
     }
 
@@ -140,10 +131,10 @@ public class Application {
                 getNumbers(request);
             } else if (request > 0 && input.length == 2) {
                 getNumbers(input);
-            } else if (request > 0) {
-                getNumbersWithProperties(input);
             } else if (request == 0) {
                 break;
+            } else {
+                getNumbersWithProperties(input);
             }
         }
         System.out.println(GOODBYE);

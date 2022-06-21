@@ -21,11 +21,6 @@ public class AmazingNumber {
         }
     }
 
-
-    public boolean haveProperty(String property) {
-        return properties.get(property.toLowerCase());
-    }
-
     public boolean haveProperty(String[] input) {
         for (String string : input) {
             if (!properties.get(string.toLowerCase())) {
