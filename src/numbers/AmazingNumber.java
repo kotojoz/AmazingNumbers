@@ -1,51 +1,56 @@
 package numbers;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AmazingNumber {
+
     private final long number;
 
-    private List<Property> properties;
+    private final Map<String, Boolean> properties;
 
     public AmazingNumber(long number) {
         this.number = number;
-        setProperties(number);
+        properties = new HashMap<>();
+        setProperties();
     }
 
-    private void setProperties(long number) {
-        properties = new ArrayList<>();
-        properties.add(new BuzzNumber(number));
-        properties.add(new DuckNumber(number));
-        properties.add(new PalindromicNumber(number));
-        properties.add(new GapFulNumber(number));
-        properties.add(new SpyNumber(number));
-        properties.add(new SquareNumber(number));
-        properties.add(new SunnyNumber(number));
-        properties.add(new EvenNumber(number));
-        properties.add(new OddNumber(number));
+    private void setProperties() {
+        for (Properties property : Properties.values()) {
+            properties.put(property.name().toLowerCase(), property.isTrue(number));
+        }
     }
 
-    public List<Property> getProperties() {
-        return properties;
+
+    public boolean haveProperty(String property) {
+        return properties.get(property.toLowerCase());
     }
 
-    public String getPropertiesStringLine() {
-        StringBuilder properties = new StringBuilder();
-        properties.append(number).append(" is ");
-        for (Property property : this.properties) {
-            if (property.isProperty) {
-                properties.append(property.name.toLowerCase()).append(", ");
+    public boolean haveProperty(String[] input) {
+        for (String string : input) {
+            if (!properties.get(string.toLowerCase())) {
+                return false;
             }
         }
-        return properties.deleteCharAt(properties.length() - 2).toString();
+        return true;
+    }
+
+    public String getPropertiesAsString() {
+        StringBuilder result = new StringBuilder();
+        result.append(number).append(" is ");
+        for (Map.Entry<String, Boolean> entry : properties.entrySet()) {
+            if (entry.getValue()) {
+                result.append(entry.getKey().toLowerCase()).append(", ");
+            }
+        }
+        return result.deleteCharAt(result.length() - 2).toString();
     }
 
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
-        for (Property property : properties) {
-            output.append("\n").append(property);
+        for (Map.Entry<String, Boolean> entry : properties.entrySet()) {
+            output.append("\n").append(entry.getKey()).append(": ").append(entry.getValue());
         }
         return "\nProperties of " + number + output;
     }
