@@ -1,8 +1,7 @@
 package numbers;
 
-import java.util.Arrays;
-
 public abstract class Property {
+
     public abstract boolean isTrue(long number);
 }
 
@@ -100,15 +99,58 @@ class JumpingNumber extends Property {
 
     @Override
     public boolean isTrue(long number) {
-        int[] digits = Arrays.stream(String.valueOf(number).split("")).mapToInt(Integer::parseInt).toArray();
-        if (digits.length == 1) {
-            return true;
-        }
-        for (int i = 0; i < digits.length - 1; i++) {
-            if (Math.abs(digits[i] - digits[i + 1]) != 1) {
-                return false;
+        while (number != 0) {
+            long digit1 = number % 10;
+            number = number / 10;
+            if (number != 0) {
+                long digit2 = number % 10;
+                if (Math.abs(digit1 - digit2) != 1) {
+                    return false;
+                }
             }
         }
         return true;
+    }
+}
+
+class HappyNumber extends Property {
+
+    @Override
+    public boolean isTrue(long number) {
+        while (number != 1 && number != 4) {
+            number = checkNumber(number);
+        }
+        return number == 1;
+    }
+
+    private long checkNumber(long number) {
+        long rem, sum = 0;
+        while (number > 0) {
+            rem = number % 10;
+            sum = sum + (rem * rem);
+            number = number / 10;
+        }
+        return sum;
+    }
+}
+
+class SadNumber extends Property {
+
+    @Override
+    public boolean isTrue(long number) {
+        while (number != 1 && number != 4) {
+            number = checkNumber(number);
+        }
+        return number != 1;
+    }
+
+    private long checkNumber(long number) {
+        long rem, sum = 0;
+        while (number > 0) {
+            rem = number % 10;
+            sum = sum + (rem * rem);
+            number = number / 10;
+        }
+        return sum;
     }
 }

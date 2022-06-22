@@ -1,11 +1,11 @@
 package numbers;
 
+
 import java.util.Scanner;
 
 import static numbers.Text.*;
 
 public class Application {
-
     public static Scanner scanner = new Scanner(System.in);
 
     public String[] enterCommand() {
@@ -62,15 +62,17 @@ public class Application {
                 wrongProperties.append(input[i]).append(", ");
             }
         }
-        if (!wrongProperties.isEmpty()) {
+        if (wrongProperties.length() != 0) {
             String[] manyProperties = String.valueOf(wrongProperties).split(" ");
             wrongProperties.delete(wrongProperties.length() - 2, wrongProperties.length());
             if (manyProperties.length == 1) {
                 throw new RuntimeException("\nThe property [" + wrongProperties + "] is wrong.\n" +
-                        "Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY, JUMPING]");
+                        "Available properties:\n" +
+                        "[EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY, JUMPING, HAPPY, SAD]");
             } else {
-                throw new RuntimeException("The properties [" + wrongProperties + "] are wrong\n" +
-                        "Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY, JUMPING]");
+                throw new RuntimeException("\nThe properties [" + wrongProperties + "] are wrong\n" +
+                        "Available properties:\n" +
+                        "[EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY, JUMPING, HAPPY, SAD]");
             }
         }
     }

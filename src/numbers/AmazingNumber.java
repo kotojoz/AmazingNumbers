@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AmazingNumber {
-
     private final long number;
 
     private final Map<String, Boolean> properties;
@@ -23,7 +22,12 @@ public class AmazingNumber {
 
     public boolean haveProperty(String[] input) {
         for (String string : input) {
-            if (!properties.get(string.toLowerCase())) {
+            if (string.contains("-")){
+                if (properties.get(string.replace("-","").toLowerCase())){
+                    return false;
+                }
+            }
+            else if (!properties.get(string.toLowerCase())) {
                 return false;
             }
         }

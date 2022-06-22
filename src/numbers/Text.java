@@ -15,6 +15,7 @@ public enum Text {
             "  * the first parameter represents a starting number;\n" +
             "  * the second parameter shows how many consecutive numbers are to be printed;\n" +
             "- two natural numbers and properties to search for;\n" +
+            "- a property preceded by minus must not be present in numbers;\n" +
             "- separate the parameters with one space;\n" +
             "- enter 0 to exit."),
 
